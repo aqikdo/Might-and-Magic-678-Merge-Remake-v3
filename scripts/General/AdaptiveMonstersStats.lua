@@ -251,7 +251,7 @@ local DefensiveSpells = {
 {34,35,38},		-- earth
 {46,64,51,54},	-- spirit
 {66},			-- mind
-{68,67},		-- body
+{69,67},		-- body
 {80,85,86},		-- light
 {89,95,96}		-- dark
 }
@@ -297,9 +297,9 @@ local MonsterSpecialSpell2 = {
 	[25]  = {51, 25},   	-- Dark Elven Warrior: Heroism 25%
 	[26]  = {17, 25},   	-- Dark Elven Defenser: Shield 25%
 	[27]  = {86, 25},  	 	-- Dark Elven Crusader: Hour of Power 25%
-	[46]  = {78, 13},   	-- Acolyte of the Sun: Heal 13%
-	[47]  = {68, 25},   	-- Cleric of the Sun: Heal 25%
-	[48]  = {77, 25},  	 	-- Priest of the Sun: Power Cure 25%
+	[46]  = {69, 13},   	-- Acolyte of the Sun: Heal 13%
+	[47]  = {69, 25},   	-- Cleric of the Sun: Heal 25%
+	[48]  = {67, 25},  	 	-- Priest of the Sun: Power Cure 25%
 	[52]  = {38, 25},   	-- Vampire Minion: Stone Skin 25%
 	[53]  = {51, 25},   	-- Vampire: Heroism 25%
 	[54]  = {95, 25},  	 	-- Greater Vampire: Pain Reflection 25%
@@ -569,7 +569,6 @@ local function LogBolsterAdjust()
 end
 
 function PrepareMapMon(mon)
-
 	local lv = MapLevel[Map.Name] or 1
 	
 	if mon.Id == 457 then
@@ -599,11 +598,11 @@ function PrepareMapMon(mon)
 --	mon.Elite           = (mon.StartX * 10007 + mon.StartY * 12347 + mon.StartZ * 45347) % 10
 --	mon.Elite           = FixRandom(mon, 10007, 12347, 45347, math.ceil(300 / (mon.Level + 10))) - 1
 	mon.Elite			= 0 
---[[
-	if mon.Elite ~= 1 or mon.Level < 20 or IsSummoned then
-		mon.Elite = 0
-	end
-]]--
+
+--	if mon.Elite ~= 1 or mon.Level < 20 or IsSummoned then
+--		mon.Elite = 0
+--	end
+
 	if mon.NameId >= 1 and mon.NameId ~= 163 then
 		mon.Elite = 1
 	end
@@ -778,13 +777,13 @@ function PrepareMapMon(mon)
 	mon.SpecialB 	= TxtMon.SpecialB
 --	mon.SpecialC 	= TxtMon.SpecialC
 	mon.SpecialD 	= TxtMon.SpecialD
---[[	
-	mon.Special = 2
-	mon.SpecialA = 5 -- If monster always stands still, like Trees in The Tularean forest, he will behave like spawn point.
-	mon.SpecialB = Game.MonstersTxt[633].Fly == 1 and 0 or 1 -- if summon can fly he will be summoned in air.
-	mon.SpecialC = 0
-	mon.SpecialD = 633
-]]--		
+	
+--	mon.Special = 2
+--	mon.SpecialA = 5 -- If monster always stands still, like Trees in The Tularean forest, he will behave like spawn point.
+--	mon.SpecialB = Game.MonstersTxt[633].Fly == 1 and 0 or 1 -- if summon can fly he will be summoned in air.
+--	mon.SpecialC = 0
+--	mon.SpecialD = 633
+		
 	mon.Velocity = mon.MoveSpeed
 	-- Rewards
 	
@@ -883,22 +882,11 @@ function PrepareMapMon(mon)
 	end
 
 	mon.PhysResistance = TxtMon.PhysResistance + ArmorResAddbyBoost[mon.BoostType]
-	--[[
-	mon.WaterResistance = 500
-	mon.PhysResistance = 500
-	mon.FireResistance = 500
-	mon.AirResistance = 500
-	mon.EarthResistance = 500
-	mon.MindResistance = 500
-	mon.SpiritResistance = 500
-	mon.LightResistance = 500
-	mon.DarkResistance = 500
-	mon.BodyResistance = 500
-	mon.Velocity = 0
-	]]--
+
 	mon.BodyRadius = MonsterBodyRadius[mon.Id] or mon.BodyRadius
 	mon.Bonus = TxtMon.Bonus
 	mon.BonusMul = TxtMon.BonusMul
+
 --	if mon.BodyRadius > 100 then
 --		mon.BodyRadius = 100
 --	end

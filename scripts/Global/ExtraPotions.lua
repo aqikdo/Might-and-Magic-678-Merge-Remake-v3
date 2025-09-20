@@ -101,7 +101,7 @@ evt.PotionEffects[2] = function(IsDrunk, Target, Power)
 		PSet.UsedPotions[PlayerId] = PSet.UsedPotions[PlayerId] or {}
 		local t = PSet.UsedPotions[PlayerId]
 		if t[1] == nil or Game.Time >= t[1] then
-			Target.HP = math.min(Target.HP + Power * 4 - 10, Target:GetFullHP())
+			Target.HP = math.min(Target.HP + Power * 9 - 10, Target:GetFullHP())
 			t[1] = Game.Time + const.Minute * 10
 		else
 			return -1

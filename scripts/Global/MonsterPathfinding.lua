@@ -805,7 +805,10 @@ local function CornerStuckCheck(MonId, Monster)
 	if not Monster or not MonId then
 		return false
 	end
-	if not (Monster.Active and Monster.HP > 0) then
+	if not (Monster.Active and Monster.HP > 0 and Monster.Velocity > 0 and Monster.SpellBuffs[const.MonsterBuff.Paralyze].ExpireTime < Game.Time and Monster.SpellBuffs[const.MonsterBuff.Stoned].ExpireTime < Game.Time) then
+		return false
+	end
+	if not (Monster.AIState == 1 or Monster.AIState == 2 or Monster.AIState == 3 or Monster.AIState == 6 or Monster.AIState == 12 or Monster.AIState == 13 or Monster.AIState == 18) then
 		return false
 	end
 	--Message("?")
@@ -928,7 +931,7 @@ local function ProcessNextMon()
 				end
 				MonWay.NeedRebuild = true
 			end
-
+			
 			if Target == Party and corner_stuck then
 				--Message("Monster " .. tostring(MonId) .. " is corner stuck, trying to move away.")
 				local midx, midy = math.round((Monster.X + Party.X) / 2), math.round((Monster.Y + Party.Y) / 2)
@@ -960,6 +963,7 @@ local function ProcessNextMon()
 					MonWay.NeedRebuild = true
 				end
 			end
+			
 
 			if not Target or MonWay.TargetInSight then
 				-- skip
