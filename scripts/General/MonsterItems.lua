@@ -436,10 +436,9 @@ end
 
 local function MonsterBuffsAdjust_HighFrequency()
 	for i,mon in Map.Monsters do
+		local spellBuffs = mon.SpellBuffs
+		local gameTime = Game.Time
 		if mon.Active and mon.HP > 0 then
-			local spellBuffs = mon.SpellBuffs
-			local gameTime = Game.Time
-			
 			--Fear
 			local fearBuff = spellBuffs[const.MonsterBuff.Fear]
 			if fearBuff.ExpireTime >= gameTime then
@@ -532,18 +531,11 @@ local function MonsterBuffsAdjust_HighFrequency()
 			end
 			]]--
 			
-			--paralyzed -> stone
-			local paralyzeBuff = spellBuffs[const.MonsterBuff.Paralyze]
-			local stonedBuff = spellBuffs[const.MonsterBuff.Stoned]
-			if paralyzeBuff.ExpireTime >= gameTime and paralyzeBuff.Power == 0 then
-				stonedBuff.ExpireTime = paralyzeBuff.ExpireTime
-				paralyzeBuff.ExpireTime = 0
-			end
-			
 			--berserk
 			local berserkBuff = spellBuffs[const.MonsterBuff.Berserk]
-			local fateBuff = spellBuffs[const.MonsterBuff.Fate]
 			local hasteBuff = spellBuffs[const.MonsterBuff.Haste]
+			local fateBuff = spellBuffs[const.MonsterBuff.Fate]
+			local hammerhandsBuff = spellBuffs[const.MonsterBuff.Hammerhands]
 			if berserkBuff.ExpireTime >= gameTime then
 				local ExpTime = berserkBuff.ExpireTime
 				local Effect = 0
@@ -597,6 +589,13 @@ local function MonsterBuffsAdjust_HighFrequency()
 					Game.ShowMonsterBuffAnim(i)
 				end
 			end
+		end
+		--paralyzed -> stone
+		local paralyzeBuff = spellBuffs[const.MonsterBuff.Paralyze]
+		local stonedBuff = spellBuffs[const.MonsterBuff.Stoned]
+		if paralyzeBuff.ExpireTime >= gameTime and paralyzeBuff.Power == 0 then
+			stonedBuff.ExpireTime = paralyzeBuff.ExpireTime
+			paralyzeBuff.ExpireTime = 0
 		end
 	end
 end

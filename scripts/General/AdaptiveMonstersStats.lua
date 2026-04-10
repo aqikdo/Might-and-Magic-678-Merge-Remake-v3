@@ -341,7 +341,8 @@ local MonsterEliteLevel = {[115] =  3, [131] =  5, [132] =  5, [134] =  2, [137]
 						   [179] = 10, [180] =  2, [111] =  3, [112] =  6, [127] = 	8,
 						   [181] =  5, [182] =  5, [183] =  5, [128] =  2, [184] = 12,
 						   [185] =  3, [186] =  3, [187] =  3, [188] =  3, [190] = 10, [191] = 5,
-						   [192] =  1, [193] =  6, [197] =  2, [198] =  10, [199] =  8, [200] =  12}
+						   [192] =  1, [193] =  6, [197] =  4, [198] =  10, [199] =  8, [200] =  12,
+						   [201] = 20}
 
 local MonsterEliteSpell = {[115] = 11, [119] = 33, [120] = 33, [131] = 97, [132] = 89, [134] = 89, 
 						   [164] = 90, [165] =  6, [166] = 32, [167] = 16, [168] = 41, 
@@ -358,7 +359,55 @@ local MonsterEliteSpell2= {[115] =  6, [119] = 35, [120] = 35, [131] = 97, [132]
 						   [190] = 93, [191] = 64, [196] = 93}
 						   
 MonsterEliteDamage		= {[170] =  2, [185] =  2, [186] =  2, [187] =  2, [128] =  3, [184] =  6, [192] = 3, 
-						   [176] =  1.5}
+						   [176] =  1.5, [201] =  0.5}
+
+MonsterEliteTable = {
+	-- [nameid] = {伤害倍数, 生命值倍数, 护甲加成, 抗性加成, type}
+	[111] = {4, 2.5, 47, 47, 2},     	-- 羊鸣教教徒（精英等级3）
+	[112] = {7, 4, 56, 56, 2},     	-- 羊鸣教高级神甫（精英等级6）
+	[115] = {4, 2.5, 47, 47, 2},     	-- 诺菲克斯（精英等级3）
+	[127] = {9, 5, 58, 58, 2},     	-- 阴影教首领（精英等级8）
+	[128] = {9, 2, 40, 40, 2},     	-- 幻影灯怪（精英等级2）
+	[131] = {6, 3.5, 54, 54, 2},     	-- 阿加（精英等级5）
+	[132] = {6, 3.5, 54, 54, 2},		-- 斯里克·席尔瓦托恩（精英等级5）
+	[134] = {3, 2, 40, 40, 2},		-- 巫妖王（精英等级2）
+	[137] = {0.5, 0.75, -40, -40, 2}, 	-- 长牙威瑟海德（精英等级-0.5）
+	[164] = {5, 3, 51, 51, 2},      -- 红衣主教（精英等级4）
+	[165] = {4, 2, 40, 40, 2},      -- 烈焰法师（精英等级2）
+	[166] = {4, 2, 40, 40, 2},      -- 寒冰法师（精英等级2）
+	[167] = {4, 2, 40, 40, 2},      -- 雷电法师（精英等级2）
+	[168] = {4, 2, 40, 40, 2},      -- 大地法师（精英等级2）
+	[169] = {2, 1.5, 29, 29, 2},      -- 游荡的孤魂（精英等级1）
+	[170] = {8, 2.5, 47, 47, 2},      -- 火之守卫（精英等级3）
+	[171] = {13, 7, 62, 62, 2},     -- 德鲁伊魔法师（精英等级12）
+	[172] = {13, 7, 62, 62, 2},     -- 德鲁伊妖术师（精英等级12）
+	[173] = {13, 7, 62, 62, 2},     -- 德鲁伊召唤师（精英等级12）
+	[174] = {6, 3.5, 54, 54, 2},      -- 死灵龙王（精英等级5）
+	[175] = {3, 2, 40, 40, 2},      -- 风暴泰坦（精英等级2）
+	[176] = {4.5, 2, 40, 40, 2},      -- 死骑领主（精英等级2）
+	[177] = {3, 2, 40, 40, 2},      -- 骄阳主教（精英等级2）
+	[178] = {3, 2, 40, 40, 2},      -- 月光主教（精英等级2）
+	[179] = {11, 6, 60, 60, 2},     -- 恶魔维尔丹（精英等级10）
+	[180] = {3, 2, 40, 40, 2},      -- 机械舰长（精英等级2）
+	[181] = {6, 3.5, 54, 54, 2},      -- 暗影窃贼（精英等级5）
+	[182] = {6, 3.5, 54, 54, 2},      -- 暗影刺客（精英等级5）
+	[183] = {6, 3.5, 54, 54, 2},      -- 暗影杀手（精英等级5）
+	[184] = {78, 7, 62, 62, 2},     -- 阴影教首领（精英等级12）
+	[185] = {8, 2.5, 47, 47, 2},      -- 水之守卫（精英等级3）
+	[186] = {8, 2.5, 47, 47, 2},      -- 风之守卫（精英等级3）
+	[187] = {8, 2.5, 47, 47, 2},      -- 地之守卫（精英等级3）
+	[188] = {4, 2.5, 47, 47, 2},      -- 大法师萨鲁曼（精英等级3）
+	[190] = {11, 6, 60, 60, 2},     -- 羊鸣教教皇（精英等级10）
+	[191] = {6, 3.5, 54, 54, 2},      -- 黑魔王（精英等级5）
+	[192] = {6, 1.5, 29, 29, 2},   	-- 风行者希尔瓦娜斯（精英等级1）
+	[193] = {7, 4, 56, 56, 2},     	-- 被流放者吉安娜（精英等级6）
+	[197] = {5, 3, 51, 51, 2},      -- 银舵大法师（精英等级4）
+	[198] = {11, 6, 60, 60, 2},     -- 银舵神箭手（精英等级10）
+	[199] = {9, 5, 58, 58, 2},      -- 银舵圣武士（精英等级8）
+	[200] = {13, 7, 62, 62, 2}, 	-- 银舵首领阿隆索斯·法奥（精英等级12）
+	[201] = {10.5, 5, 160, 140, 0}      -- 圣殿守卫（精英等级20）
+}
+							
 						   			   
 local MapLevel 			= {["sewer.blv"] 	= 2.2, -- Free Haven Sewer
 						   ["zdwj02.blv"] 	= 0.6, -- Devil Outpost
@@ -603,41 +652,62 @@ function PrepareMapMon(mon)
 --		mon.Elite = 0
 --	end
 
-	if mon.NameId >= 1 and mon.NameId ~= 163 then
-		mon.Elite = 1
-	end
-	if mon.Id == 646 or mon.Id == 647 or mon.Id == 648 or mon.Id == 652 then
-		mon.Elite = 0
-	end
-	if mon.Elite == 0 then
-		mon.NameId = 0
-	end
-	if mon.NameId >= 1 and mon.NameId ~= 163 then
-		if mon.NameId == 10 and Game.Map.Name == "pyramid.blv" then
-			mon.Elite = 2
+	-- Elite Dealing
+	local elite_dmg_mul = 1
+	local elite_hp_mul = 1
+	local elite_armor_add = 0
+	local elite_res_add = 0
+	local elite_type = -1
+	if mon.NameId >= 1 then
+		if (mon.Id == 646 or mon.Id == 647 or mon.Id == 648 or mon.Id == 652) then
+			mon.NameId = 0
 		else
-			mon.Elite = MonsterEliteLevel[mon.NameId] or 1
+			if mon.NameId == 10 and Game.Map.Name == "pyramid.blv" then
+				mon.Elite = 2
+				elite_dmg_mul = 3;
+				elite_hp_mul = 2;
+				eilte_armor_add = 40;
+				elite_res_add = 40;
+				elite_type = 2;
+			else
+				mon.Elite = MonsterEliteLevel[mon.NameId] or 1
+				attr_table = MonsterEliteTable[mon.NameId]
+				if attr_table then
+					elite_dmg_mul = attr_table[1]
+					elite_hp_mul = attr_table[2]
+					elite_armor_add = attr_table[3]
+					elite_res_add = attr_table[4]
+					elite_type = attr_table[5]
+				else
+					elite_dmg_mul = 2
+					elite_hp_mul = 1.5
+					elite_armor_add = 30
+					elite_res_add = 30
+					elite_type = 2
+				end
+			end
+			
 		end
 	end
 
-	local num = FixRandom(mon, 97, 47, 73, 100) - 1
-	
-	if num < 75 then
-		mon.BoostType = math.floor(num / 15)
+	--Boost type
+	if elite_type ~= -1 then
+		mon.BoostType = elite_type
 	else
-		mon.BoostType = Style
-	end
-	
-	if mon.Elite ~= 0 then
-		mon.BoostType = const.Bolster.Style.Wimpy
+		local num = FixRandom(mon, 97, 47, 73, 100) - 1
+		if num < 75 then
+			mon.BoostType = math.floor(num / 15)
+		else
+			mon.BoostType = Style
+		end
 	end
 
 --	if mon.Elite == 1 then
 --		mon.Elite = 10
 --	end
 	-- Base stats
-	if mon.NameId ~= 123 and not IsSummoned then -- Q
-		local fhp = ceil(min(TxtMon.FullHP * (1 + mon.Elite / 2), 30000) * ReanimateHP[IsReanimated]) 
+	if not IsSummoned then -- Q
+		local fhp = ceil(min(TxtMon.FullHP * elite_hp_mul, 30000) * ReanimateHP[IsReanimated]) 
 		if mon.HP > 0 then
 			mon.HP = ceil(fhp * mon.HP / mon.FullHP)
 		end
@@ -646,12 +716,6 @@ function PrepareMapMon(mon)
 
 	--mon.HP = 30000
 	--mon.FullHP = 30000
-
-	local elite_armor_add = 99.5 * math.log(2 * (mon.Elite + 1) / (mon.Elite + 2))
-	local elite_res_add = elite_armor_add
-	if mon.Elite ~= 0 then
-		elite_res_add = elite_res_add - 20
-	end
 
 	mon.ArmorClass = TxtMon.ArmorClass + elite_armor_add + FixRandom(mon, 131, 137, 139, 11) - 1
 	
@@ -663,13 +727,13 @@ function PrepareMapMon(mon)
 	
 	if not IsSummoned then
 		mon.Attack1.DamageAdd 		= BolsterMul * 60
-		SetAttackMaxDamage2(mon, mon.Attack1, math.ceil(TxtMon.Attack1.DamageDiceSides) * TxtMon.Attack1.DamageDiceCount * (1 + mon.Elite) * (MonsterEliteDamage[mon.NameId] or 1) * ReanimateDmg[IsReanimated] * DamageMulByBoost[mon.BoostType])
+		SetAttackMaxDamage2(mon, mon.Attack1, math.ceil(TxtMon.Attack1.DamageDiceSides) * TxtMon.Attack1.DamageDiceCount * elite_dmg_mul * ReanimateDmg[IsReanimated] * DamageMulByBoost[mon.BoostType])
 		
 		mon.Attack1.Missile 		= TxtMon.Attack1.Missile
 		mon.Attack1.Type 			= TxtMon.Attack1.Type
 		
 		mon.Attack2.DamageAdd 		= BolsterMul * 60
-		SetAttackMaxDamage2(mon, mon.Attack2, math.ceil(TxtMon.Attack2.DamageDiceSides) * TxtMon.Attack2.DamageDiceCount * (1 + mon.Elite) * (MonsterEliteDamage[mon.NameId] or 1) * ReanimateDmg[IsReanimated] * DamageMulByBoost[mon.BoostType])
+		SetAttackMaxDamage2(mon, mon.Attack2, math.ceil(TxtMon.Attack2.DamageDiceSides) * TxtMon.Attack2.DamageDiceCount * elite_dmg_mul * ReanimateDmg[IsReanimated] * DamageMulByBoost[mon.BoostType])
 
 	--	mon.Attack2Chance 			= 0 
 		mon.Attack2Chance 			= TxtMon.Attack2Chance
@@ -716,9 +780,9 @@ function PrepareMapMon(mon)
 		mon.SpellChance		= min(TxtMon.SpellChance * (1 + mon.Elite) * SpRateMulByBoost[mon.BoostType], math.min(60, 15 * (SpRateMulByStyle[Style] ^ 2) * SpRateMulByBoost[mon.BoostType]))
 	--	mon.SpellSkill 		= JoinSkill(math.min(math.max(1, sk * (1 + mon.Elite) * SpellDamageMul[mon.Spell] * (MonsterEliteDamage[mon.NameId] or 1) * MagicMulByBoost[mon.BoostType]), 1000) , mas)
 		if IsReanimated == 1 then
-			mon.SpellSkill = JoinSkill(math.min(math.max(1, sk * (1 + mon.Elite) * SpellDamageMul[mon.Spell] * (MonsterEliteDamage[mon.NameId] or 1) * MagicMulByBoost[mon.BoostType]) * ReanimateDmg[1], 1000), mas)
+			mon.SpellSkill = JoinSkill(math.min(math.max(1, sk * elite_dmg_mul * SpellDamageMul[mon.Spell] * MagicMulByBoost[mon.BoostType]) * ReanimateDmg[1], 1000), mas)
 		else
-			mon.SpellSkill = JoinSkill(math.min(math.max(1, sk * (1 + mon.Elite) * SpellDamageMul[mon.Spell] * (MonsterEliteDamage[mon.NameId] or 1) * MagicMulByBoost[mon.BoostType]), 1000) , mas)
+			mon.SpellSkill = JoinSkill(math.min(math.max(1, sk * elite_dmg_mul * SpellDamageMul[mon.Spell] * MagicMulByBoost[mon.BoostType]), 1000) , mas)
 		end
 	--	mon.SpellChance     = 0
 
@@ -747,9 +811,9 @@ function PrepareMapMon(mon)
 		mon.Spell2Chance	= min(TxtMon.Spell2Chance * (1 + mon.Elite) * SpRateMulByBoost[mon.BoostType], math.min(100, 25 * (SpRateMulByStyle[Style] ^ 2) * SpRateMulByBoost[mon.BoostType]))
 	--	mon.Spell2Skill 	= JoinSkill(math.min(math.max(1, sk * (1 + mon.Elite) * SpellDamageMul[mon.Spell2] * (MonsterEliteDamage[mon.NameId] or 1) * MagicMulByBoost[mon.BoostType]), 1000), mas)
 		if IsReanimated == 1 then
-			mon.Spell2Skill = JoinSkill(math.min(math.max(1, sk * (1 + mon.Elite) * SpellDamageMul[mon.Spell2] * (MonsterEliteDamage[mon.NameId] or 1) * MagicMulByBoost[mon.BoostType]) * ReanimateDmg[1], 1000), mas)
+			mon.Spell2Skill = JoinSkill(math.min(math.max(1, sk * elite_dmg_mul * SpellDamageMul[mon.Spell2] * MagicMulByBoost[mon.BoostType]) * ReanimateDmg[1], 1000), mas)
 		else
-			mon.Spell2Skill = JoinSkill(math.min(math.max(1, sk * (1 + mon.Elite) * SpellDamageMul[mon.Spell2] * (MonsterEliteDamage[mon.NameId] or 1) * MagicMulByBoost[mon.BoostType]), 1000) , mas)
+			mon.Spell2Skill = JoinSkill(math.min(math.max(1, sk * elite_dmg_mul * SpellDamageMul[mon.Spell2] * MagicMulByBoost[mon.BoostType]), 1000) , mas)
 		end
 	--	mon.Spell2Chance    = 0
 		if mon.Spell == mon.Spell2 then
@@ -757,9 +821,7 @@ function PrepareMapMon(mon)
 			mon.Spell2 = 0
 			mon.Spell2Chance = 0
 			mon.Spell2Skill = 0
-			if mon.NameId == 170 then
-				mon.SpellChance = 100
-			elseif mon.NameId == 173 then
+			if mon.NameId == 170 or mon.NameId == 173 then
 				mon.SpellChance = 100
 			end
 		end
@@ -843,7 +905,7 @@ function PrepareMapMon(mon)
 	end
 	if TxtMon.EarthResistance < 10000 then 
 		mon.EarthResistance = math.max(TxtMon.EarthResistance + elite_res_add + FixRandom(mon, 193, 197, 199, 11) + ArmorResAddbyBoost[mon.BoostType], 0)
-		if mon.Elite ~= 0 or mon.BoostType == const.Bolster.Style.Speed then
+		if mon.BoostType == const.Bolster.Style.Speed then
 			mon.EarthResistance = const.MonsterImmune
 		end
 	else
@@ -866,7 +928,7 @@ function PrepareMapMon(mon)
 	end
 	if TxtMon.LightResistance < 10000 then 
 		mon.LightResistance = math.max(TxtMon.LightResistance + elite_res_add + FixRandom(mon, 269, 271, 277, 11) + ArmorResAddbyBoost[mon.BoostType], 0)
-		if mon.Elite ~= 0 or mon.BoostType == const.Bolster.Style.Speed then
+		if mon.BoostType == const.Bolster.Style.Speed then
 			mon.LightResistance = const.MonsterImmune
 		end
 	else
@@ -874,7 +936,7 @@ function PrepareMapMon(mon)
 	end
 	if TxtMon.DarkResistance < 10000 then 
 		mon.DarkResistance = math.max(TxtMon.DarkResistance + elite_res_add + FixRandom(mon, 281, 283, 293, 11) + ArmorResAddbyBoost[mon.BoostType], 0)
-		if mon.Elite ~= 0 or mon.BoostType == const.Bolster.Style.Speed then
+		if mon.BoostType == const.Bolster.Style.Speed then
 			mon.DarkResistance = const.MonsterImmune
 		end
 	else

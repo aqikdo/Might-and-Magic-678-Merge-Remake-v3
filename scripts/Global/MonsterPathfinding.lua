@@ -805,6 +805,9 @@ local function CornerStuckCheck(MonId, Monster)
 	if not Monster or not MonId then
 		return false
 	end
+	if not Monster.ShowAsHostile then
+		return false
+	end
 	if not (Monster.Active and Monster.HP > 0 and Monster.Velocity > 0 and Monster.SpellBuffs[const.MonsterBuff.Paralyze].ExpireTime < Game.Time and Monster.SpellBuffs[const.MonsterBuff.Stoned].ExpireTime < Game.Time) then
 		return false
 	end
